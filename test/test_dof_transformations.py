@@ -55,7 +55,9 @@ def test_apply_right(cell_type, element_type, degree, element_args):
         cell_info = random.randrange(2**30)
 
         data1 = np.array(list(range(size**2)), dtype=np.float32)
+        data0 = data1.copy()
         e.T_apply(data1, size, cell_info)
+        assert np.allclose(data0, data1)
         data1 = data1.reshape((size, size))
 
         # This is the transpose of the data used above
