@@ -59,6 +59,7 @@ def test_dof_transformations(cell, element, degree, element_args, block_size):
 
         data1 = data.copy()
         e.T_apply(data1, block_size, cell_info)
+        assert np.allclose(data, data1)
         # Numba function does not use blocked data
         data2 = data.copy().reshape(e.dim, block_size)
         # Mapping lists to numba dictionaries
